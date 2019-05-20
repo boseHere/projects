@@ -37,9 +37,12 @@ def strip_error_bases(d):
             line = line.decode('utf-8')
             line = line.rstrip('\n')
             if i == 1 or i == 3:
+
+                # Reduce over-read lines to target length
                 if len(line) > d['Target length'][0]:
                     trim = len(line) - d['Target length'][0]
                     line = line[:-1 * trim]
+                    
             print(line)
             i += 1
             if i == 4:

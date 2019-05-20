@@ -36,11 +36,13 @@ def make_mirna_dict(d):
     with gzip.open(d['miRNA file'][0], 'r') as rfile:
         for line in rfile:
             line = line.decode('utf-8')
-            if line.startswith(">"):
-                ref = line.rstrip('\n')
-            else:
-                seq = line.rstrip('\n')
-                mirna_dict[seq] = [ref, 0]
+
+            if line.startswith(">"):     # Create dictionary where keys are
+                ref = line.rstrip('\n')  # sequences and values are a list
+            else:                        # containing reference information in
+                seq = line.rstrip('\n')  # the 0th index and the count
+                mirna_dict[seq] = [ref, 0]  # (initially set to 0) in the 1st
+                                            # index
 
     return mirna_dict
 
@@ -49,11 +51,16 @@ def count(mirna_dict, d):
     with gzip.open(d['sRNA file'][0], 'r') as sfile:
         i = 0
         for line in sfile:
+
+            # Clean the lines
             line = line.decode('utf-8')
             line = line.rstrip('\n')
+
             if i == 1:
-                seq = line.replace('T', 'U')
-                if seq in mirna_dict:
+                seq = line.replace('T', 'U')  # Change Thymine to Uracil
+
+                if seq in mirna_dict:  # If the sequence is in the reference
+                                       # dictionary, increase its count
                     mirna_dict[seq][1] += 1
             i += 1
             if i == 5:
