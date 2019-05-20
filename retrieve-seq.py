@@ -11,10 +11,17 @@ import gzip
 
 
 def main():
+    d = get_args()
+    chr = retrieve_scaffold(d)
+    find_seq(chr, d)
 
+
+def get_args():
     parser = argparse.ArgumentParser(description="Retrieve sequences from a "
                                                  "reference genome given "
                                                  "coordinates")
+    parser.add_argument('Filename', metavar='f', type=str, nargs=1,
+                        help='a fasta file')
     parser.add_argument('Chromosome name', metavar='n', type=str, nargs=1,
                         help='The name of the chromosome/scaffold where the'
                              'sequence is')
@@ -25,29 +32,34 @@ number of the base where the sequence starts.')
     args = parser.parse_args()
     d = vars(args)
 
-    with gzip.open('genome.fa.gz', 'rt') as the_file:
+    return d
+
+
+def retrieve_scaffold(d):
+    with gzip.open(d['Filename'][0]) as the_file:
         k = False
-        output = ""
+        data = []
         for line in the_file:
             line = line.strip()
             line = line.decode('utf-8')
-            seq_line_length = len(line)
-            if line[1:] == d['Chromosome name']:
-                k = 0
 
-            elif k != False:
-                if d['Start'][0] <= k <= d['End'][0]:
-                    if k >= seq_line_length:
-                        index = k % seq_line_length
-                    else:
-                        index = k
+            if line[1:] == d['Chromosome name'][0]:
+                k = True
 
-                    output += str(line[index])
-                if k == d['End'][0]:
+            elif k:
+                if line.startswith(">"):
                     break
-            k += 1
+                else:
+                    data.append(line)
 
-        print(output)
+        return data
+
+
+def find_seq(chr, d):
+    full_chr = "".join(chr)
+    for i in range(d['Start'][0], d['End'][0] + 1):
+        print(full_chr[i], end="")
+    print()
 
 
 main()
