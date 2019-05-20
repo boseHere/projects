@@ -32,12 +32,11 @@ def convert(d):
             line = line.strip()
 
             if i == 0:
-                line = '>' + line[1:]
+                line = '>' + line[1:]  # Changes fastq '@' character to fasta
+                # '>' character
 
-            line = line + "\n"
-            line = line.encode('utf-8')
-
-            if i == 0 or i == 1:
+            if i == 0 or i == 1:  # Don't print deliminator ('+') or confidence
+                # line
                 print(line)
 
             i += 1

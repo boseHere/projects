@@ -13,7 +13,7 @@ import gzip
 def main():
     d = get_args()
     chr = retrieve_scaffold(d)
-    find_seq(chr, d)
+    print_seq(chr, d)
 
 
 def get_args():
@@ -40,13 +40,19 @@ def retrieve_scaffold(d):
         k = False
         data = []
         for line in the_file:
+
+            # Clean the line
             line = line.strip()
             line = line.decode('utf-8')
 
+            # Find the chromosome name within the file
             if line[1:] == d['Chromosome name'][0]:
                 k = True
 
-            elif k:
+            elif k:  # If the chromosome name has been found, start appending
+                # the lines of nucleotides for that chromosome until the next
+                # chromosome is found. Break the loop when the next chromosome
+                # is reached
                 if line.startswith(">"):
                     break
                 else:
@@ -55,7 +61,7 @@ def retrieve_scaffold(d):
         return data
 
 
-def find_seq(chr, d):
+def print_seq(chr, d):
     full_chr = "".join(chr)
     for i in range(d['Start'][0], d['End'][0] + 1):
         print(full_chr[i], end="")
