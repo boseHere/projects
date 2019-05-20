@@ -17,10 +17,10 @@ def main():
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Take sRNA seq run; identifies"
-                                                 "counts of those sequences in"
-                                                 "a given miRNA reference "
-                                                 "genome")
+    parser = argparse.ArgumentParser(description="Removes the last base of"
+                                                 "error-prone full-length"
+                                                 "(Target length) reads "
+                                                 "from a fastq file")
     parser.add_argument('RNA file', metavar='n', type=str, nargs=1,
                         help='The RNA seq filename')
     parser.add_argument('Target length', metavar='l', type=int, nargs=1, help=

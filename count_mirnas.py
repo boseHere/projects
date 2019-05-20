@@ -63,8 +63,7 @@ def count(mirna_dict, d):
 
 def output(mirna_dict):
     for seq in mirna_dict:
-        if mirna_dict[seq][1] != 0:
-            print("{}\n{}\nCount:{}".format(seq, mirna_dict[seq][0],
+        print("{}\n{}\nCount:{}".format(seq, mirna_dict[seq][0],
                                         mirna_dict[seq][1]))
 
 
