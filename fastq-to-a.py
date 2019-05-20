@@ -2,7 +2,7 @@
 '''
 Author: Maya Bose
 Date: 5/17/2019
-This program converts a fastq file to a fasta file. It takes a 
+This program converts a fastq file to a fasta file.
 '''
 import sys
 import gzip
