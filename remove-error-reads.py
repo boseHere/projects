@@ -41,8 +41,9 @@ def strip_error_bases(d):
                 # Reduce over-read lines to target length
                 if len(line) > d['Target length'][0]:
                     trim = len(line) - d['Target length'][0]
-                    line = line[:-1 * trim]
-                    
+                    if trim > 0:
+                        line = line[:-1 * trim]
+
             print(line)
             i += 1
             if i == 4:
