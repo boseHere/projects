@@ -63,7 +63,7 @@ def count(mirna_dict, d):
                                        # dictionary, increase its count
                     mirna_dict[seq][1] += 1
             i += 1
-            if i == 5:
+            if i == 4:
                 i = 0
     return mirna_dict
 
