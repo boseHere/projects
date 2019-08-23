@@ -23,8 +23,8 @@ def get_args():
     """
     parser = argparse.ArgumentParser(description="This script filters reads"
                                                  "within a given range of "
-                                                 "lengths, to be used on fastq"
-                                                 "files that have already been"
+                                                 "lengths, to be used on fastq "
+                                                 "files that have already been "
                                                  "adapter-trimmed")
     parser.add_argument("input", type=str, help="Input file name")
     parser.add_argument("--gzip", help="Gzip the output file",
