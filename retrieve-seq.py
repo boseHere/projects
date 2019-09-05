@@ -25,9 +25,9 @@ def get_args():
     parser.add_argument('Chromosome name', metavar='n', type=str, nargs=1,
                         help='The name of the chromosome/scaffold where the'
                              'sequence is')
-    parser.add_argument('Start', metavar='s', type=int, nargs=1, help='The\
-number of the base where the sequence starts.')
-    parser.add_argument('End', metavar='e', type=int, nargs=1, help='The\
+    parser.add_argument('Start', metavar='s', type=int, nargs=1, help='The \
+    number of the base where the sequence starts.')
+    parser.add_argument('End', metavar='e', type=int, nargs=1, help='The \
     number of the base where the sequence starts.')
     args = parser.parse_args()
     d = vars(args)
