@@ -2,7 +2,7 @@
 """
 Author: Maya Bose
 Date: 9/3/2019
-Purpose: This program takes an NCBI Taxonomy ID a produces a fasta file 
+Purpose: This program takes an NCBI Taxonomy ID and produces a fasta file 
 containing all non-miRNA reads for that species available from the Rfam 
 database: https://rfam.xfam.org/
 """
